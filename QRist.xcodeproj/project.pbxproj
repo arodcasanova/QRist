@@ -81,11 +81,9 @@
 		3A273339198B830300A84092 /* QRist */ = {
 			isa = PBXGroup;
 			children = (
-				3A27333E198B830300A84092 /* AppDelegate.h */,
-				3A27333F198B830300A84092 /* AppDelegate.m */,
+				3A273347198B830300A84092 /* Main.storyboard */,
 				3A273344198B830300A84092 /* ViewController.h */,
 				3A273345198B830300A84092 /* ViewController.m */,
-				3A273347198B830300A84092 /* Main.storyboard */,
 				3A27334A198B830300A84092 /* Images.xcassets */,
 				3A273341198B830300A84092 /* QRist.xcdatamodeld */,
 				3A27333A198B830300A84092 /* Supporting Files */,
@@ -96,6 +94,8 @@
 		3A27333A198B830300A84092 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3A27333E198B830300A84092 /* AppDelegate.h */,
+				3A27333F198B830300A84092 /* AppDelegate.m */,
 				3A27333B198B830300A84092 /* Info.plist */,
 				3A27333C198B830300A84092 /* main.m */,
 			);
