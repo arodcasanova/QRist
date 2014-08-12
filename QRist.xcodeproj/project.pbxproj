@@ -25,6 +25,13 @@
 		3A273349198B830300A84092 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A273347198B830300A84092 /* Main.storyboard */; };
 		3A27334B198B830300A84092 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A27334A198B830300A84092 /* Images.xcassets */; };
 		3A273357198B830300A84092 /* QRistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A273356198B830300A84092 /* QRistTests.m */; };
+		3A3878331996BA250059B02A /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3878321996BA250059B02A /* Patient.m */; };
+		3A8449DD1995DBF900A2E207 /* RecordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8449DC1995DBF900A2E207 /* RecordTableViewController.m */; };
+		3A853E441998AC520067FD05 /* CreateRecordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A853E431998AC520067FD05 /* CreateRecordTableViewController.m */; };
+		3A853E4B1998BC9B0067FD05 /* search-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A853E4A1998BC9B0067FD05 /* search-32.png */; };
+		3A853E4D1998BD110067FD05 /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A853E4C1998BD110067FD05 /* Add.png */; };
+		3A853E531998C5740067FD05 /* scan-corners-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A853E521998C5740067FD05 /* scan-corners-32.png */; };
+		3A853E551998C6E30067FD05 /* corner_scan-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A853E541998C6E30067FD05 /* corner_scan-25.png */; };
 		3AE4FEF0198F4F5B0082A2E9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4FEEF198F4F5B0082A2E9 /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +70,16 @@
 		3A273350198B830300A84092 /* QRistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QRistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A273355198B830300A84092 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A273356198B830300A84092 /* QRistTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRistTests.m; sourceTree = "<group>"; };
+		3A3878311996BA250059B02A /* Patient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patient.h; sourceTree = "<group>"; };
+		3A3878321996BA250059B02A /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
+		3A8449DB1995DBF900A2E207 /* RecordTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordTableViewController.h; sourceTree = "<group>"; };
+		3A8449DC1995DBF900A2E207 /* RecordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordTableViewController.m; sourceTree = "<group>"; };
+		3A853E421998AC520067FD05 /* CreateRecordTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRecordTableViewController.h; sourceTree = "<group>"; };
+		3A853E431998AC520067FD05 /* CreateRecordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRecordTableViewController.m; sourceTree = "<group>"; };
+		3A853E4A1998BC9B0067FD05 /* search-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-32.png"; sourceTree = "<group>"; };
+		3A853E4C1998BD110067FD05 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
+		3A853E521998C5740067FD05 /* scan-corners-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan-corners-32.png"; sourceTree = "<group>"; };
+		3A853E541998C6E30067FD05 /* corner_scan-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "corner_scan-25.png"; sourceTree = "<group>"; };
 		3AE4FEEE198F4F5B0082A2E9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		3AE4FEEF198F4F5B0082A2E9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,8 +135,10 @@
 			isa = PBXGroup;
 			children = (
 				3A273347198B830300A84092 /* Main.storyboard */,
+				3A853E471998BB3D0067FD05 /* Images */,
 				3A27334A198B830300A84092 /* Images.xcassets */,
 				3A273341198B830300A84092 /* QRist.xcdatamodeld */,
+				3A3878341996BAD80059B02A /* Models */,
 				3AE4FEED198F4F270082A2E9 /* Controllers */,
 				3A27333A198B830300A84092 /* Supporting Files */,
 			);
@@ -165,6 +184,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		3A3878341996BAD80059B02A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3A3878311996BA250059B02A /* Patient.h */,
+				3A3878321996BA250059B02A /* Patient.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		3A853E471998BB3D0067FD05 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				3A853E541998C6E30067FD05 /* corner_scan-25.png */,
+				3A853E521998C5740067FD05 /* scan-corners-32.png */,
+				3A853E4C1998BD110067FD05 /* Add.png */,
+				3A853E4A1998BC9B0067FD05 /* search-32.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		3AE4FEED198F4F270082A2E9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +211,10 @@
 				3A0C6655198F262D00947CE7 /* QRViewController.m */,
 				3AE4FEEE198F4F5B0082A2E9 /* LoginViewController.h */,
 				3AE4FEEF198F4F5B0082A2E9 /* LoginViewController.m */,
+				3A8449DB1995DBF900A2E207 /* RecordTableViewController.h */,
+				3A8449DC1995DBF900A2E207 /* RecordTableViewController.m */,
+				3A853E421998AC520067FD05 /* CreateRecordTableViewController.h */,
+				3A853E431998AC520067FD05 /* CreateRecordTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -256,8 +299,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A853E551998C6E30067FD05 /* corner_scan-25.png in Resources */,
+				3A853E4B1998BC9B0067FD05 /* search-32.png in Resources */,
 				3A273349198B830300A84092 /* Main.storyboard in Resources */,
 				3A27334B198B830300A84092 /* Images.xcassets in Resources */,
+				3A853E4D1998BD110067FD05 /* Add.png in Resources */,
+				3A853E531998C5740067FD05 /* scan-corners-32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,9 +323,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A273343198B830300A84092 /* QRist.xcdatamodeld in Sources */,
+				3A3878331996BA250059B02A /* Patient.m in Sources */,
+				3A853E441998AC520067FD05 /* CreateRecordTableViewController.m in Sources */,
 				3A273340198B830300A84092 /* AppDelegate.m in Sources */,
 				3A27333D198B830300A84092 /* main.m in Sources */,
 				3A0C6656198F262D00947CE7 /* QRViewController.m in Sources */,
+				3A8449DD1995DBF900A2E207 /* RecordTableViewController.m in Sources */,
 				3AE4FEF0198F4F5B0082A2E9 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

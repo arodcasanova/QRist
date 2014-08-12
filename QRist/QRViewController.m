@@ -8,6 +8,8 @@
 
 #import "QRViewController.h"
 #import <Parse/Parse.h>
+#import "Patient.h"
+#import "RecordTableViewController.h"
 
 @interface QRViewController ()
 
@@ -17,14 +19,26 @@
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (BOOL)startReading;
 - (void)stopReading;
-- (void)loadBeepSound;
 
 @end
 
-@implementation QRViewController
+@implementation QRViewController {
+    Patient *recievedPatient;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
+}
 
 - (void)viewDidLoad
 {
@@ -33,6 +47,7 @@
     
     _isReading = NO;
     _captureSession = nil;
+    [self.activityIndicator stopAnimating];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,6 +63,7 @@
             [_bbitemStart setTitle:@"Stop"];
             [_bbitemStart setTintColor:[UIColor redColor]];
             [_lblStatus setText:@"Scanning for QR Code"];
+            [_lblStatus setTextColor: [UIColor whiteColor]];
             [_lblStatus setTextAlignment:NSTextAlignmentCenter];
         }
     }  else {
@@ -109,44 +125,67 @@
         AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
             
-            [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj stringValue] waitUntilDone:NO];
-            
-            
-            [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
-            [_bbitemStart performSelectorOnMainThread:@selector(setTitle:) withObject:@"Start" waitUntilDone:NO];
-            _isReading = NO;
-            
-            if (_audioPlayer) {
-                [_audioPlayer play];
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self stopReading];
+                [_bbitemStart setTitle:@"Start"];
+                [_bbitemStart setTintColor:[UIColor greenColor]];
+                _isReading = NO;
+                
+                [self fetchPatientWithID:[metadataObj stringValue] success:^(Patient *fetchedPatient) {
+                    NSLog(@"Ready for transtion");
+                    [_lblStatus setText:@"QR Reader is not scanning"];
+                    recievedPatient = fetchedPatient;
+                    [self performSegueWithIdentifier:@"Show Record" sender:self];
+                } failure:^(NSError *error) {
+                    NSLog(@"No record found");
+                    [_lblStatus setTextColor: [UIColor redColor]];
+                    [_lblStatus setText:@"No record found"];
+                }];
+                
+            });
+        
         }
     }
 }
 
-- (void) loadBeepSound
+- (void)fetchPatientWithID:(NSString*)patientID success:(void (^)(Patient *))success failure:(void (^)(NSError *))failure
 {
-//    NSString *beepFilePath = [[NSBundle mainBundle] pathForResource:@"beep-07" ofType:@"mp3"];
-//    NSURL *beepURL = [NSURL URLWithString:beepFilePath];
-//    NSError *error;
-//    
-//    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:beepURL error:&error];
-//    if (error) {
-//        NSLog(@"Could not play beep file.");
-//        NSLog(@"%@", [error localizedDescription]);
-//    }
-//    else {
-//        [_audioPlayer prepareToPlay];
-//    }
+    [self.activityIndicator startAnimating];
+    [_lblStatus setText:@"Searching for record..."];
+    
+    __block NSDictionary *patientRecord = nil;
+    __block Patient *patient = nil;
+    
+    [Patient patientFromID:patientID completion:^(NSDictionary *fetchedRecord) {
+        if (fetchedRecord) {
+            patientRecord = fetchedRecord;
+            patient = [[Patient alloc] initWithRecord:patientRecord];
+            success(patient);
+        } else {
+            NSLog(@"No record");
+            NSError *error = nil;
+            failure(error);
+        }
+        [self.activityIndicator stopAnimating];
+    }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.destinationViewController isKindOfClass:[RecordTableViewController class]]) {
+        RecordTableViewController *dest = (RecordTableViewController *)segue.destinationViewController;
+        
+        if (!recievedPatient) NSLog(@"Pat still nil");
+        
+        dest.currentPatient = recievedPatient;
+    }
 }
-*/
 
+
+- (void)dealloc {
+    [_activityIndicator release];
+    [super dealloc];
+}
 @end
